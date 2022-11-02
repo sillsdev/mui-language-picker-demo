@@ -33,6 +33,10 @@ function App() {
     console.log(`tag information: ${JSON.stringify(tag, null, 2)}`)
   }
 
+  const displayName = (name: string, tag?:LangTag) => {
+    return tag?.localname? `${tag?.localname} / ${name}`: tag?.name || name;
+  }
+
   return (
     <div className="App">
       <div>
@@ -53,6 +57,7 @@ function App() {
           font={fontName}
           setFont={handleFontName}
           setInfo={handleInfo}
+          displayName={displayName}
           t={languagePickerStrings_en}
         />
       </div>
