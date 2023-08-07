@@ -2,10 +2,9 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import {
-  LanguagePicker,
-  ILanguagePickerStrings,
-  languagePickerStrings_en,
   LangTag,
+  LanguagePicker,
+  languagePickerStrings_en,
 } from "mui-language-picker";
 import React from "react";
 
@@ -13,6 +12,7 @@ function App() {
   const [bcp47, setBcp47] = React.useState("und");
   const [lgName, setLgName] = React.useState("");
   const [fontName, setFontName] = React.useState("");
+  const [rtl, setRtl] = React.useState(false)
 
   const handleBcp47 = (bcp47: string) => {
     setBcp47(bcp47)
@@ -27,6 +27,11 @@ function App() {
   const handleFontName = (fontName: string) => {
     setFontName(fontName)
     console.log(`fontName: ${fontName}`)
+  }
+
+  const handleRtl = (rtl: boolean) => {
+    setRtl(rtl)
+    console.log(`rtl: ${rtl}`)
   }
 
   const handleInfo = (tag: LangTag) => {
@@ -56,6 +61,7 @@ function App() {
           setName={handleName}
           font={fontName}
           setFont={handleFontName}
+          setDir={handleRtl}
           setInfo={handleInfo}
           displayName={displayName}
           t={languagePickerStrings_en}
