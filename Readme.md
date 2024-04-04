@@ -3,11 +3,15 @@
 ## installation
 
 ```sh
-nvm use 16
+nvm use 18
 npm install
 ```
 
 ## Usage
+
+```sh
+npm dev
+```
 
 1. click in language picker control
 2. Enter a BCP-47 code, language name, or country name
