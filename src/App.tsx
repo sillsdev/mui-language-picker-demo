@@ -5,6 +5,7 @@ import {
   LangTag,
   LanguagePicker,
   languagePickerStrings_en,
+  getLangTag, getRtl, getFamily
 } from "mui-language-picker";
 import React from "react";
 
@@ -41,6 +42,17 @@ function App() {
   const displayName = (name: string, tag?:LangTag) => {
     return tag?.localname? `${tag?.localname} / ${name}`: tag?.name || name;
   }
+
+  React.useEffect(() => {
+    const tag = getLangTag(bcp47)
+    console.log(`------\ntag changed: ${JSON.stringify(tag, null, 2)}`)
+    console.log(`------\nrtl based on tag: ${getRtl(bcp47)}`)
+  }, [bcp47]);
+
+  React.useEffect(() => {
+    const family = getFamily(fontName)
+    console.log(`------\nfont family changed: ${JSON.stringify(family, null, 2)}`)
+  }, [fontName]);
 
   return (
     <div className="App">
