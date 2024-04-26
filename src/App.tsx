@@ -18,6 +18,7 @@ function App() {
   const [bcp47, setBcp47] = React.useState("und");
   const [lgName, setLgName] = React.useState("");
   const [fontName, setFontName] = React.useState("");
+  const [fontUrl, setFontUrl] = React.useState("");
   const [rtl, setRtl] = React.useState(false);
   const [tagData, setTagData] = useState<JSX.Element | null>(null);
   const [familyData, setFamilyData] = useState<JSX.Element | null>(null);
@@ -36,6 +37,9 @@ function App() {
     setFontName(fontName);
     console.log(`fontName: ${fontName}`);
     setFamilyData(<>{JSON.stringify(getFamily(fontName), null, 2)}</>);
+    const url = getFontUrl(fontName);
+    console.log(`fontUrl: ${url}`);
+    setFontUrl(url);
   };
 
   const handleRtl = (rtl: boolean) => {
@@ -122,9 +126,14 @@ function App() {
                 </Badge>
                 <StyledTextAreaAudosize
                   family={fontName}
-                  url={getFontUrl(fontName)}
+                  url={fontUrl}
                   lang={bcp47 || "und"}
-                  sx={{ p: 1, direction: rtl ? "rtl" : "ltr", fontSize:'x-large'}}
+                  sx={{
+                    p: 1,
+                    direction: rtl ? "rtl" : "ltr",
+                    fontFamily: fontName,
+                    fontSize: "x-large",
+                  }}
                 />
               </Stack>
             )}
