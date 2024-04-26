@@ -13,6 +13,7 @@ import React from "react";
 import { Badge, Box, Grid, Link, Stack, Typography } from "@mui/material";
 import { StyledTextAreaAudosize } from "./WebFontStyles";
 import { getFontUrl } from "./getFontUrl";
+import { version } from "../package.json";
 
 function App() {
   const [bcp47, setBcp47] = React.useState("und");
@@ -90,7 +91,8 @@ function App() {
               <img src={reactLogo} className="logo react" alt="React logo" />
             </a>
             <br />
-            <h2>mui-language-picker demo</h2>
+            <h2>mui-language-picker demo<span style={{fontWeight: 'normal', fontSize:'small'}}>: ({version})</span></h2>
+            
           </Box>
           <div className="card">
             <LanguagePicker
