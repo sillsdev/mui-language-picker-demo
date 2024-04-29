@@ -14,6 +14,15 @@ import { Badge, Box, Grid, Link, Stack, Typography } from "@mui/material";
 import { StyledTextAreaAudosize } from "./WebFontStyles";
 import { getFontUrl } from "./getFontUrl";
 import { version } from "../package.json";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { isDark } from "./isDark";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: isDark() ? "dark" : "light",
+  },
+});
 
 function App() {
   const [bcp47, setBcp47] = React.useState("und");
@@ -71,85 +80,92 @@ function App() {
   }, [fontName]);
 
   return (
-    <div className="App">
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <pre>
-            {lgName
-              ? "Language Name: " + lgName + (rtl ? " (RTL)" : " (LTR)")
-              : ""}
-            <br />
-            {tagData}
-          </pre>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="App">
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <pre>
+              {lgName
+                ? "Language Name: " + lgName + (rtl ? " (RTL)" : " (LTR)")
+                : ""}
+              <br />
+              {tagData}
+            </pre>
+          </Grid>
+          <Grid item xs={4}>
+            <Box sx={{ width: "400px" }}>
+              <a href="https://vitejs.dev" target="_blank">
+                <img src="/vite.svg" className="logo" alt="Vite logo" />
+              </a>
+              <a href="https://reactjs.org" target="_blank">
+                <img src={reactLogo} className="logo react" alt="React logo" />
+              </a>
+              <br />
+              <h2>
+                mui-language-picker demo
+                <span style={{ fontWeight: "normal", fontSize: "small" }}>
+                  : ({version})
+                </span>
+              </h2>
+            </Box>
+            <div className="card">
+              <LanguagePicker
+                value={bcp47}
+                setCode={handleBcp47}
+                name={lgName}
+                setName={handleName}
+                font={fontName}
+                setFont={handleFontName}
+                setDir={handleRtl}
+                setInfo={handleInfo}
+                displayName={displayName}
+                t={languagePickerStrings_en}
+              />
+              {fontName && (
+                <Stack spacing={1} sx={{ m: 2 }}>
+                  <Badge
+                    badgeContent={
+                      <Link
+                        href="https://keyman.com/"
+                        target="_blank"
+                        color="inherit"
+                      >
+                        i
+                      </Link>
+                    }
+                    color="primary"
+                    sx={{ alignSelf: "center" }}
+                  >
+                    <Typography variant="h6" component="span">
+                      Type some text here:
+                    </Typography>
+                  </Badge>
+                  <StyledTextAreaAudosize
+                    family={fontName}
+                    url={fontUrl}
+                    lang={bcp47 || "und"}
+                    sx={{
+                      p: 1,
+                      direction: rtl ? "rtl" : "ltr",
+                      fontFamily: fontName,
+                      fontSize: "x-large",
+                    }}
+                  />
+                </Stack>
+              )}
+            </div>
+          </Grid>
+          <Grid item xs={3}>
+            <pre>
+              {fontName ? "Font Family Name: " + fontName : ""}
+              <br />
+              {familyData}
+            </pre>
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <Box sx={{ width: "400px" }}>
-            <a href="https://vitejs.dev" target="_blank">
-              <img src="/vite.svg" className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://reactjs.org" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-            <br />
-            <h2>mui-language-picker demo<span style={{fontWeight: 'normal', fontSize:'small'}}>: ({version})</span></h2>
-            
-          </Box>
-          <div className="card">
-            <LanguagePicker
-              value={bcp47}
-              setCode={handleBcp47}
-              name={lgName}
-              setName={handleName}
-              font={fontName}
-              setFont={handleFontName}
-              setDir={handleRtl}
-              setInfo={handleInfo}
-              displayName={displayName}
-              t={languagePickerStrings_en}
-            />
-            {fontName && (
-              <Stack spacing={1} sx={{ m: 2 }}>
-                <Badge
-                  badgeContent={
-                    <Link
-                      href="https://keyman.com/"
-                      target="_blank"
-                      color="inherit"
-                    >
-                      i
-                    </Link>
-                  }
-                  color="primary"
-                  sx={{ alignSelf: "center" }}
-                >
-                  <Typography variant="h6" component="span">
-                    Type some text here:
-                  </Typography>
-                </Badge>
-                <StyledTextAreaAudosize
-                  family={fontName}
-                  url={fontUrl}
-                  lang={bcp47 || "und"}
-                  sx={{
-                    p: 1,
-                    direction: rtl ? "rtl" : "ltr",
-                    fontFamily: fontName,
-                    fontSize: "x-large",
-                  }}
-                />
-              </Stack>
-            )}
-          </div>
-        </Grid>
-        <Grid item xs={3}>
-          <pre>
-            {fontName ? "Font Family Name: " + fontName : ""}
-            <br />
-            {familyData}
-          </pre>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
