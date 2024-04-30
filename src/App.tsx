@@ -120,6 +120,7 @@ function App() {
                 setDir={handleRtl}
                 setInfo={handleInfo}
                 displayName={displayName}
+                required
                 t={languagePickerStrings_en}
               />
               {fontName && (
