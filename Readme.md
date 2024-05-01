@@ -1,5 +1,7 @@
 # mui-language-picker-demo
 
+Demo of the [mui-language-picker](https://www.npmjs.com/package/mui-language-picker).
+
 ## installation
 
 ```sh
