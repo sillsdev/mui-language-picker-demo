@@ -1,5 +1,7 @@
 # mui-language-picker-demo
 
+Demo of the [mui-language-picker](https://www.npmjs.com/package/mui-language-picker).
+
 ## installation
 
 ```sh
@@ -10,7 +12,7 @@ npm install
 ## Usage
 
 ```sh
-npm dev
+npm run dev
 ```
 
 1. click in language picker control
