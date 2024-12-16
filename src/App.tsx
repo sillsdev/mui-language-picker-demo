@@ -17,6 +17,7 @@ import { version } from "../package.json";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { isDark } from "./isDark";
+// import MmsData from "./mui-language-picker/data/mms-lang";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,6 +31,7 @@ function App() {
   const [fontName, setFontName] = React.useState("");
   const [fontUrl, setFontUrl] = React.useState("");
   const [rtl, setRtl] = React.useState(false);
+  // const mmsLang = React.useRef<Set<string>>(new Set());
   const [tagData, setTagData] = useState<JSX.Element | null>(null);
   const [familyData, setFamilyData] = useState<JSX.Element | null>(null);
 
@@ -66,6 +68,12 @@ function App() {
     return tag?.localname ? `${tag?.localname} / ${name}` : tag?.name || name;
   };
 
+  // const handleFilter = (code: string) => {
+  //   const tag = getLangTag(code);
+  //   const iso639_3 = tag?.iso639_3;
+  //   return mmsLang.current.has(iso639_3 ?? "und");
+  // }
+
   React.useEffect(() => {
     const tag = getLangTag(bcp47);
     console.log(`------\ntag changed: ${JSON.stringify(tag, null, 2)}`);
@@ -78,6 +86,13 @@ function App() {
       `------\nfont family changed: ${JSON.stringify(family, null, 2)}`
     );
   }, [fontName]);
+
+  // React.useEffect(() => {
+  //     mmsLang.current = new Set(MmsData.filter(i => i.is_mms_asr === true).map(d => d.iso));
+  //     console.log(
+  //       `${mmsLang.current.size} unique mms asr langs loaded, ${MmsData.length} total`
+  //     );
+  //   }, []);
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -120,6 +135,7 @@ function App() {
                 setDir={handleRtl}
                 setInfo={handleInfo}
                 displayName={displayName}
+                // filter={handleFilter}
                 required
                 t={languagePickerStrings_en}
               />

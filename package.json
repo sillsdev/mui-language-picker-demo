@@ -1,7 +1,7 @@
 {
   "name": "mui-language-picker-demo",
   "private": true,
-  "version": "2.2.1",
+  "version": "2.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
-    "mui-language-picker": "^2.2.1",
+    "mui-language-picker": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -23,5 +23,8 @@
     "@vitejs/plugin-react": "^2.2.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.0"
+  },
+  "volta": {
+    "node": "18.20.5"
   }
 }
