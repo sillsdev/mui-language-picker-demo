@@ -39,6 +39,7 @@ function App() {
   const [lgName, setLgName] = React.useState("");
   const [fontName, setFontName] = React.useState("");
   const [fontUrl, setFontUrl] = React.useState("");
+  const [features, setFeatures] = React.useState<string>();
   const [rtl, setRtl] = React.useState(false);
   const mmsLang = React.useRef<Set<string>>(new Set());
   const [filtered, setFiltered] = React.useState(false);
@@ -64,6 +65,11 @@ function App() {
     const url = getFontUrl(fontName);
     console.log(`fontUrl: ${url}`);
     setFontUrl(url);
+  };
+
+  const handleFeatures = (features: string | undefined) => {
+    setFeatures(features);
+    console.log(`features: ${features}`);
   };
 
   const handleRtl = (rtl: boolean) => {
@@ -149,6 +155,8 @@ function App() {
                   setName={handleName}
                   font={fontName}
                   setFont={handleFontName}
+                  feats={features}
+                  setFeats={handleFeatures}
                   setDir={handleRtl}
                   setInfo={handleInfo}
                   displayName={displayName}
@@ -186,8 +194,10 @@ function App() {
                         direction: rtl ? "rtl" : "ltr",
                         fontFamily: fontName,
                         fontSize: "x-large",
+                        fontFeatureSettings: features,
                       }}
                     />
+                    {features}
                   </Stack>
                 )}
                 <FormControlLabel
