@@ -5,7 +5,7 @@ Demo of the [mui-language-picker](https://www.npmjs.com/package/mui-language-pic
 ## installation
 
 ```sh
-nvm use 18
+nvm use 22
 npm install
 ```
 

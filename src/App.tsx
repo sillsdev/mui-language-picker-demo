@@ -45,8 +45,8 @@ function App() {
   const [filtered, setFiltered] = React.useState(false);
   const [noScript, setNoScript] = React.useState(false);
   const [noFont, setNoFont] = React.useState(false);
-  const [tagData, setTagData] = useState<JSX.Element | null>(null);
-  const [familyData, setFamilyData] = useState<JSX.Element | null>(null);
+  const [tagData, setTagData] = useState<React.ReactNode>(null);
+  const [familyData, setFamilyData] = useState<React.ReactNode>(null);
 
   const handleBcp47 = (bcp47: string) => {
     setBcp47(bcp47);
@@ -121,7 +121,7 @@ function App() {
       <CssBaseline />
       <div className="App" style={{ width: "100%" }}>
         <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <Grid size={4}>
             <pre>
               {lgName
                 ? "Language Name: " + lgName + (rtl ? " (RTL)" : " (LTR)")
@@ -130,7 +130,7 @@ function App() {
               {tagData}
             </pre>
           </Grid>
-          <Grid item xs={4}>
+          <Grid size={4}>
             <Box sx={{ width: "400px" }}>
               <a href="https://vitejs.dev" target="_blank">
                 <img src="/vite.svg" className="logo" alt="Vite logo" />
@@ -230,7 +230,7 @@ function App() {
               </Stack>
             </div>
           </Grid>
-          <Grid item xs={3}>
+          <Grid size={3}>
             <pre>
               {fontName ? "Font Family Name: " + fontName : ""}
               <br />
