@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "mui-language-picker": "^2.7.4",
+    "mui-language-picker": "^2.7.5",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
